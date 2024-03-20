@@ -1,7 +1,10 @@
 #include "hebbiana.h"
 
-NeuronaHebbiana::NeuronaHebbiana(int a)
+//Inicialización de la clase Neurona Hebbiana
+template <class T1>
+NeuronaHebbiana<T1>::NeuronaHebbiana(int a)
 {
+    printf("-Neurona Hebbiana- \n");
     b = 1;
     ne = a;
     np = 1 << a;
@@ -16,20 +19,20 @@ NeuronaHebbiana::NeuronaHebbiana(int a)
 
     //Asignar Espacio de Memoria
     y = (int*)malloc(np * sizeof(int));
+
     // Inicializar salidas con 1
-    for (int i = 0; i < np; ++i) {
+    for (int i = 0; i < np; ++i) 
         y[i] = 1;
-    }
 
     // Asignar memoria para los pesos
     w = (int*)malloc(ne * sizeof(int));
-    // Inicializar los pesos con ceros
-    for (int i = 0; i < ne; ++i) {
-        w[i] = 0;
-    }
-}
 
-NeuronaHebbiana::~NeuronaHebbiana()
+    // Inicializar los pesos con ceros
+    for (int i = 0; i < ne; ++i) 
+        w[i] = 0;
+}
+template<class T1>
+NeuronaHebbiana<T1>::~NeuronaHebbiana()
 {
     for (int i = 0; i < np; ++i)
     {
@@ -41,7 +44,8 @@ NeuronaHebbiana::~NeuronaHebbiana()
     free(w);
 }
 
-void NeuronaHebbiana::ingresoValores()
+template<class T1>
+void NeuronaHebbiana<T1>::ingresoValores()
 {
     cout << "Ingrese los elementos de la entrada: " << endl;
     for (int i = 0; i < np; ++i)
@@ -61,8 +65,8 @@ void NeuronaHebbiana::ingresoValores()
     }
 }
 
-
-void NeuronaHebbiana::visualizar() {
+template<class T1>
+void NeuronaHebbiana<T1>::visualizar() {
     cout << "Entradas:" << endl;
     for (int j = 0; j < ne; ++j) {
         cout << "X" << j + 1 << endl;
@@ -76,11 +80,12 @@ void NeuronaHebbiana::visualizar() {
     cout << "\n";
 }
 
-void NeuronaHebbiana::Entrenar()
+template<class T1>
+void NeuronaHebbiana<T1>::Entrenar()
 {
     for (int k = 1; k < n; k++)
     {
-        printf("Entrenando la época no. %d\n", k);
+        printf("Entrenando la epoca no. %d\n", k);
         ////Se realiza el entrenamiento para 1 época
         for (int i = 0; i < np; i++)//Controla el # de patrón
         {
@@ -102,7 +107,8 @@ void NeuronaHebbiana::Entrenar()
     }
 }
 
-void NeuronaHebbiana::Evaluar()
+template<class T1>
+void NeuronaHebbiana<T1>::Evaluar()
 {
     for (int i = 0; i < ne; i++)
     {
@@ -125,7 +131,8 @@ void NeuronaHebbiana::Evaluar()
 
 }
 
-void NeuronaHebbiana::Imprimir()
+template<class T1>
+void NeuronaHebbiana<T1>::Imprimir()
 {
     for (int i = 0; i < ne; i++)
         printf("W%d = %d\n", i, w[i]);
